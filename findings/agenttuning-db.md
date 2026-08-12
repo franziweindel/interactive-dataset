@@ -1,4 +1,4 @@
-# agenttuning-db — Source Findings
+# agenttuning-db - Source Findings
 
 Last updated: 2026-08-12
 
@@ -22,7 +22,7 @@ No manual pre-mapping, pre-classification, or task-specific fixes are required. 
 
 ## Key structural findings
 
-1. The AgentInstruct db split is **SFT training data**. Ground truth is implicit in the demonstrated trajectory's final answer — there are no separate labels.
+1. The AgentInstruct db split is **SFT training data**. Ground truth is implicit in the demonstrated trajectory's final answer - there are no separate labels.
 
 2. Task descriptions contain table column headers but **NOT row data**. Database contents are recovered from BIRD benchmark SQLite files.
 
@@ -36,8 +36,8 @@ No manual pre-mapping, pre-classification, or task-specific fixes are required. 
 |---|---|---|
 | SELECT (BIRD-derived) | 360 | See validation below |
 | Synthetic INSERT | 49 | Partially recoverable |
-| Synthetic UPDATE | 63 | Blocked — underdetermined initial state |
-| Synthetic DELETE | 57 | Blocked — underdetermined initial state |
+| Synthetic UPDATE | 63 | Blocked - underdetermined initial state |
+| Synthetic DELETE | 57 | Blocked - underdetermined initial state |
 | Blocked (no SQL execution) | 5 | Broken trajectory |
 | Blocked (unresolved errors) | 3 | Broken trajectory |
 | Needs review | 1 | |
@@ -57,13 +57,13 @@ From the automated pipeline (single command, no manual intervention):
 | Data mismatch | 47 |
 | SQL error | 115 |
 
-The previous manual investigation validated 170 (later expanded to 199 with INSERT tasks). The automated pipeline validates 196 SELECT tasks — comparable coverage with minor differences from BIRD table-name mapping approach.
+The previous manual investigation validated 170 (later expanded to 199 with INSERT tasks). The automated pipeline validates 196 SELECT tasks - comparable coverage with minor differences from BIRD table-name mapping approach.
 
 ### Backtick repair
 
 A deterministic, semantics-preserving repair: `` `table.column` `` → `` `table`.`column` ``
 
-The pipeline applies this automatically. No semantic changes — the intended column reference is preserved.
+The pipeline applies this automatically. No semantic changes - the intended column reference is preserved.
 
 ### Root causes of remaining failures
 
@@ -80,7 +80,7 @@ Exhaustive investigation confirmed no source databases exist for any DML task. A
 
 INSERT tasks into empty tables have deterministically recoverable initial state. The pipeline classifies these as `insert` (49 tasks). Full DML verification requires further adapter work.
 
-### UPDATE/DELETE (120 tasks) — BLOCKED
+### UPDATE/DELETE (120 tasks) - BLOCKED
 
 Initial state cannot be uniquely determined. The trajectory provides no information about pre-existing rows.
 
@@ -105,11 +105,11 @@ All 5 pilot tasks pass: startup, reset, oracle, no-op rejection, incorrect-attem
 
 ## LLM cost
 
-**Adapter execution: $0.00** — Once constructed, the adapter runs entirely deterministically.
+**Adapter execution: $0.00** - Once constructed, the adapter runs entirely deterministically.
 
-**Adapter construction: not yet automated.** The current adapter encodes knowledge discovered during manual investigation — that BIRD is the upstream source, that table-name matching is the correct mapping strategy, that backtick quoting is the dominant repairable defect, that all DML tasks are synthetic self-instruct, etc. This investigation was performed by the developer, not by an LLM source-analysis agent.
+**Adapter construction: not yet automated.** The current adapter encodes knowledge discovered during manual investigation - that BIRD is the upstream source, that table-name matching is the correct mapping strategy, that backtick quoting is the dominant repairable defect, that all DML tasks are synthetic self-instruct, etc. This investigation was performed by the developer, not by an LLM source-analysis agent.
 
-For a genuinely new source, the pipeline's step 1 ("Onboard or load the source adapter") should invoke an LLM to discover this kind of structural knowledge. That agent workflow is not yet implemented — the `agenttuning-db` adapter is hand-authored from manual findings. This means the adapter is correct and validated, but the *construction* cost is not reflected in the $0 figure. An honest estimate for LLM-based source analysis to reach equivalent adapter knowledge would be roughly $0.50–$2.00 (a few thousand tokens of dataset inspection + upstream repo analysis + paper reading), amortized across all 538 rows.
+For a genuinely new source, the pipeline's step 1 ("Onboard or load the source adapter") should invoke an LLM to discover this kind of structural knowledge. That agent workflow is not yet implemented - the `agenttuning-db` adapter is hand-authored from manual findings. This means the adapter is correct and validated, but the *construction* cost is not reflected in the $0 figure. An honest estimate for LLM-based source analysis to reach equivalent adapter knowledge would be roughly $0.50–$2.00 (a few thousand tokens of dataset inspection + upstream repo analysis + paper reading), amortized across all 538 rows.
 
 ## Automated vs. manual results
 
@@ -130,11 +130,11 @@ For a genuinely new source, the pipeline's step 1 ("Onboard or load the source a
 
 | Category | Count | Validated | Blocked |
 |---|---|---|---|
-| SELECT (validated) | 196 | 196 | — |
-| SELECT (data mismatch) | 47 | — | 47 |
-| SELECT (SQL error) | 115 | — | 115 |
-| INSERT | 49 | — | 49 (not yet in pipeline) |
-| UPDATE/DELETE | 120 | — | 120 |
-| Broken trajectory | 8 | — | 8 |
-| Other | 3 | — | 3 |
+| SELECT (validated) | 196 | 196 | - |
+| SELECT (data mismatch) | 47 | - | 47 |
+| SELECT (SQL error) | 115 | - | 115 |
+| INSERT | 49 | - | 49 (not yet in pipeline) |
+| UPDATE/DELETE | 120 | - | 120 |
+| Broken trajectory | 8 | - | 8 |
+| Other | 3 | - | 3 |
 | **Total** | **538** | **196** | **342** |

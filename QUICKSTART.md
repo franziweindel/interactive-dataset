@@ -3,7 +3,7 @@
 `interactive_dataset` converts existing interactive-agent data into validated Harbor tasks.
 
 ```text
-source → download → classify → map to upstream assets → validate in runtime → emit Harbor tasks → verify
+source -> download -> classify -> map to upstream assets -> validate in runtime -> emit Harbor tasks -> verify
 ```
 
 ## Run
@@ -39,8 +39,8 @@ python3 pipeline/run_pipeline.py --source agenttuning-db --output my_tasks
 
 ## Outputs
 
-- `reports/pipeline_report.json` — machine-readable summary
-- `reports/validation.json` — per-task validation status
-- `reports/bird_mapping.json` — task → BIRD database mapping
-- `harbor_tasks_auto/` — emitted Harbor task directories
-- `findings/agenttuning-db.md` — source-specific analysis
+- `reports/pipeline_report.json` - machine-readable summary
+- `reports/validation.json` - per-task validation status
+- `reports/bird_mapping.json` - task -> BIRD database mapping
+- `harbor_tasks_auto/` - emitted Harbor task directories
+- `findings/agenttuning-db.md` - source-specific analysis

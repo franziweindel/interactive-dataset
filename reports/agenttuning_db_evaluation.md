@@ -1,4 +1,4 @@
-# agenttuning-db — Evaluation Report
+# agenttuning-db - Evaluation Report
 
 Date: 2025-08-12
 
@@ -35,7 +35,7 @@ A row is usable only when its original BIRD database is available, the reference
 | LLM repair successes | 0 |
 | Total LLM repair cost | $0.00 |
 
-**Assessment:** No repair is needed for the validated subset. The 11 "SQL errors" are MySQL-specific syntax that fails only in SQLite validation — they would work correctly in the target MySQL runtime. The 25 "data mismatches" cannot be repaired without the correct BIRD database version; they are not broken tasks, just tasks whose source database version differs from the available dev set.
+**Assessment:** No repair is needed for the validated subset. The 11 "SQL errors" are MySQL-specific syntax that fails only in SQLite validation - they would work correctly in the target MySQL runtime. The 25 "data mismatches" cannot be repaired without the correct BIRD database version; they are not broken tasks, just tasks whose source database version differs from the available dev set.
 
 ## 3. Five-Task Conversion Pilot
 
@@ -95,8 +95,8 @@ Unseen tasks: db_190, db_1, db_418, db_219, db_535, db_476, db_116, db_504, db_1
 
 ## 6. Adapter Completion Status
 
-- [x] Source audit complete — defines usable subset (58 tasks from BIRD dev)
-- [x] Repair strategy evaluated — no repair needed
+- [x] Source audit complete - defines usable subset (58 tasks from BIRD dev)
+- [x] Repair strategy evaluated - no repair needed
 - [x] All 5 pilot tasks pass end to end
 - [x] 10 unseen tasks pass without task-specific hacks
 - [x] Total development cost: $0.00 (well within $20 budget)
