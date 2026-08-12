@@ -33,6 +33,12 @@ Requires Docker and Python 3.9+ with `datasets` and `huggingface_hub`.
 | `agenttuning-db` | 538 | 196 SELECT | $0.00 | Adapter complete |
 | `agenttuning-os` | - | - | - | Not started |
 | `agenttuning-kg` | - | - | - | Not started |
+| `agenttuning-alfworld` | - | - | - | Not started |
+| `agenttuning-webshop` | - | - | - | Not started |
+| `agenttuning-mind2web` | - | - | - | Not started |
+| `go-browse-wa` | - | - | - | Not started |
+| `synatra` | - | - | - | Not started |
+| `nnetnav-live` | - | - | - | Not started |
 
 ### agenttuning-db
 
