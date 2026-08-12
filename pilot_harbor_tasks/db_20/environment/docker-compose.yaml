@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: agenttuning
+      MYSQL_DATABASE: agentdb
+    ports:
+      - "3306:3306"
+    tmpfs:
+      - /var/lib/mysql:size=2G
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --max-connections=100
+      - --max-allowed-packet=256M
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: mysqladmin ping -h localhost -u root -pagenttuning
+      interval: 5s
+      timeout: 3s
+      retries: 20

@@ -1,0 +1,23 @@
+# Data (downloaded at runtime)
+bird_data/
+data_agentinstruct_db.json
+data_agentbench_*.jsonl
+data_agentbench_*.json
+
+# Generated task outputs (not shipped; pipeline regenerates them)
+harbor_tasks/
+harbor_tasks_auto/
+harbor_tasks_unseen/
+
+# Python
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+
+# Credentials
+.env
+
+# Docker state
+/tmp/

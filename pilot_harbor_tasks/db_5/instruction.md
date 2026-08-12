@@ -1,0 +1,4 @@
+You are interacting with a MySQL database. You can execute SQL queries by calling the `execute_sql` tool with your query. When you have determined the answer, call the `submit_answer` tool with your final answer.
+
+Question: What is the total value of shipped vintage car orders from 2003-2004?
+There are 3 tables involved with this task. The name of the 1st table is products, and the headers of this table are productCode,productName,productLine,productScale,productVendor,productDescription,quantityInStock,buyPrice,MSRP. The name of the 2nd table is orderdetails, and the headers of this table are orderNumber,productCode,quantityOrdered,priceEach,orderLineNumber. The name of the 3rd table is orders, and the headers of this table are orderNumber,orderDate,requiredDate,shippedDate,status,comments,customerNumber.

@@ -1,0 +1,48 @@
+{
+  "source": "agenttuning-db",
+  "total_rows": 538,
+  "classification": {
+    "select": 360,
+    "blocked_underdetermined_state": 120,
+    "insert": 49,
+    "blocked_no_sql": 5,
+    "blocked_unresolved_errors": 3,
+    "needs_review": 1
+  },
+  "mapped_to_bird": 358,
+  "validation": {
+    "validated": 182,
+    "validated_backtick_repair": 14,
+    "sql_error": 115,
+    "data_mismatch": 47
+  },
+  "total_validated": 196,
+  "pilot": {
+    "ids": [
+      "db_0",
+      "db_2",
+      "db_5",
+      "db_19",
+      "db_20"
+    ],
+    "passed": 5,
+    "total": 5
+  },
+  "unseen": {
+    "ids": [
+      "db_454",
+      "db_108",
+      "db_31",
+      "db_536",
+      "db_222",
+      "db_191",
+      "db_184",
+      "db_124",
+      "db_535",
+      "db_103"
+    ],
+    "passed": 10,
+    "total": 10
+  },
+  "llm_cost_usd": 0.0
+}

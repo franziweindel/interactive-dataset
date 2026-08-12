@@ -1,0 +1,11 @@
+[task]
+id = "db_20"
+source = "agenttuning-db"
+type = "SELECT"
+bird_database = "toxicology"
+
+[provenance]
+upstream_dataset = "THUDM/AgentInstruct"
+upstream_split = "db"
+upstream_benchmark = "BIRD"
+agentinstruct_id = "db_20"

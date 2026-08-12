@@ -1,0 +1,20 @@
+FROM mysql:8.0
+
+# Environment for MySQL initialization
+ENV MYSQL_ROOT_PASSWORD=agenttuning
+ENV MYSQL_DATABASE=agentdb
+
+# Copy initialization script
+COPY init_db.sh /docker-entrypoint-initdb.d/
+COPY load_sqlite.py /opt/
+
+# Install Python and sqlite3 for database conversion
+RUN microdnf install -y python3 python3-pip sqlite && \
+    pip3 install mysql-connector-python && \
+    microdnf clean all
+
+# Healthcheck
+HEALTHCHECK --interval=5s --timeout=3s --retries=10 \
+    CMD mysqladmin ping -h localhost -u root -pagenttuning || exit 1
+
+EXPOSE 3306
