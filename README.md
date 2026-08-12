@@ -24,7 +24,7 @@ pip install datasets huggingface_hub
 python3 pipeline/run_pipeline.py --source agenttuning-db
 ```
 
-Requires Docker (for MySQL runtime). See [QUICKSTART.md](QUICKSTART.md) for options.
+Requires Docker and Python 3.9+ with `datasets` and `huggingface_hub`.
 
 ## Current state
 
